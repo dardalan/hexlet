@@ -1,0 +1,12 @@
+{
+  "dependencies": {
+    "lodash": "*"
+  },
+  "scripts": {
+    "test": "jest --colors"
+  },
+  "jest": {
+    "testEnvironment": "node",
+    "bail": true
+  }
+}
