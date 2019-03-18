@@ -8,7 +8,7 @@ import File from './File';
 import HexletFsError from './HexletFsError';
 
 const getPathParts = filepath =>
-  filepath.split(path.sep).filter(part => part !== '');
+  filepath.split(path.sep).filter(part => Boolean(part));
 
 export default class {
   constructor() {
