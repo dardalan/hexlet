@@ -1,0 +1,41 @@
+Arguments: 
+  /Users/svyatoslav/.nvm/versions/node/v10.10.0/bin/node /usr/local/Cellar/yarn/1.13.0/libexec/bin/yarn.js
+
+PATH: 
+  /Users/svyatoslav/.nvm/versions/node/v10.10.0/bin:/Users/svyatoslav/.rvm/gems/ruby-2.2.1/bin:/Users/svyatoslav/.rvm/gems/ruby-2.2.1@global/bin:/Users/svyatoslav/.rvm/rubies/ruby-2.2.1/bin:/usr/local/opt/postgresql@9.6/bin:/usr/local/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/Users/svyatoslav/.rvm/bin
+
+Yarn version: 
+  1.13.0
+
+Node version: 
+  10.10.0
+
+Platform: 
+  darwin x64
+
+Trace: 
+  SyntaxError: /Users/svyatoslav/Documents/MyProjects/hexlet/javascript/js-errors/lesson1/package.json: Unexpected token } in JSON at position 136
+      at JSON.parse (<anonymous>)
+      at /usr/local/Cellar/yarn/1.13.0/libexec/lib/cli.js:1625:59
+      at Generator.next (<anonymous>)
+      at step (/usr/local/Cellar/yarn/1.13.0/libexec/lib/cli.js:304:30)
+      at /usr/local/Cellar/yarn/1.13.0/libexec/lib/cli.js:315:13
+
+npm manifest: 
+  {
+    "dependencies": {
+      "path": "*"
+    },
+    "scripts": {
+      "test": "jest --colors"
+    },
+    "jest": {
+      "testEnvironment": "node",
+    }
+  }
+
+yarn manifest: 
+  No manifest
+
+Lockfile: 
+  No lockfile
