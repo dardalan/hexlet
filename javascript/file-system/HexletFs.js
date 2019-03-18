@@ -23,7 +23,6 @@ export default class {
     return current.getMeta().getStats();
   }
 
-  // BEGIN (write your solution here)
   copySync(src, dest) {
     const data = this.readFileSync(src);
     const destNode = this.findNode(dest);
@@ -34,7 +33,17 @@ export default class {
     }
     return this.writeFileSync(dest, data);
   }
-  // END
+
+  unlinkSync(filepath) {
+    const current = this.findNode(filepath);
+    if (!current) {
+      throw new HexletFsError(errors.code.ENOENT, filepath);
+    }
+    if (current.getMeta().isDirectory()) {
+      throw new HexletFsError(errors.code.EPERM, filepath);
+    }
+    return current.getParent().removeChild(current.getKey());
+  }
 
   writeFileSync(filepath, body) {
     const { dir, base } = path.parse(filepath);
@@ -46,7 +55,7 @@ export default class {
     if (current && current.getMeta().isDirectory()) {
       throw new HexletFsError(errors.code.EISDIR, filepath);
     }
-    parent.addChild(base, new File(base, body));
+    return parent.addChild(base, new File(base, body));
   }
 
   touchSync(filepath) {
@@ -75,6 +84,15 @@ export default class {
     }, this.tree);
   }
 
+  mkdirSync(filepath) {
+    const { dir, base } = path.parse(filepath);
+    const parent = this.findNode(dir);
+    if (!parent || parent.getMeta().isDirectory()) {
+      throw new HexletFsError(errors.code.EISDIR, filepath);
+    }
+    return parent.addChild(base, new Dir(base));
+  }
+
   readFileSync(filepath) {
     const current = this.findNode(filepath);
     if (!current) {
@@ -84,6 +102,17 @@ export default class {
       throw new HexletFsError(errors.code.EISDIR, filepath);
     }
     return current.getMeta().getBody();
+  }
+
+  readdirSync(filepath) {
+    const dir = this.findNode(filepath);
+    if (!dir) {
+      throw new HexletFsError(errors.code.ENOENT, filepath);
+    }
+    if (dir.getMeta().isFile()) {
+      throw new HexletFsError(errors.code.ENOTDIR, filepath);
+    }
+    return dir.getChildren().map(child => child.getKey());
   }
 
   findNode(filepath) {
