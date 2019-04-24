@@ -1,0 +1,23 @@
+{
+  "dependencies": {
+    "lodash": "*",
+    "bottlejs": "*",
+    "lodash": "*",
+    "uuid-js": "*",
+    "validate.js": "*",
+    "@babel/plugin-proposal-class-properties": "^7.4.0"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.3.4",
+    "@babel/preset-env": "^7.3.4",
+    "babel-jest": "^24.5.0",
+    "jest": "^24.5.0"
+  },
+  "scripts": {
+    "test": "jest --colors"
+  },
+  "jest": {
+    "testEnvironment": "node",
+    "verbose": true
+  }
+}
