@@ -1,5 +1,6 @@
+// @flow
+
 import Bottle from 'bottlejs';
-import _ from 'lodash';
 import services from './services';
 import entities from './entities';
 import repositories from './repositories';
@@ -8,11 +9,8 @@ import makeValidator from './lib/validator';
 export default () => {
   const bottle = new Bottle();
   bottle.factory('repositories', () => {
-    const result = Object.keys(repositories)
-      .reduce(
-        (acc, repoName) => ({ ...acc, [_.camelCase(repoName)]: new repositories[repoName]() }),
-        {},
-      );
+    const result = Object.keys(repositories).reduce((acc, repoName) =>
+      ({ ...acc, [repoName]: new repositories[repoName]() }), {});
     return result;
   });
 
@@ -22,7 +20,7 @@ export default () => {
   bottle.factory('services', (container) => {
     const result = Object.keys(services).reduce((acc, serviceName) => {
       const service = new services[serviceName](container);
-      return { ...acc, [_.camelCase(serviceName)]: service };
+      return { ...acc, [serviceName]: service };
     }, {});
     return result;
   });

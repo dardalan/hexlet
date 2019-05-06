@@ -7,7 +7,7 @@ export default class extends ApplicationService {
     const cinemaHall = new this.entities.CinemaHall(name, rows, cols);
     const errors = this.validate(cinemaHall);
     if (!errors) {
-      this.repositories.cinemaHall.save(cinemaHall);
+      this.repositories.CinemaHall.save(cinemaHall);
     }
     return [cinemaHall, errors];
   }
@@ -16,21 +16,8 @@ export default class extends ApplicationService {
     const film = new this.entities.Film(name, duration);
     const errors = this.validate(film);
     if (!errors) {
-      this.repositories.film.save(film);
+      this.repositories.Film.save(film);
     }
     return [film, errors];
-  }
-
-  createFilmScreening(filmId, cinemaHallId, time) {
-    const film = this.repositories.film.find(filmId);
-    const cinemaHall = this.repositories.cinemaHall.find(cinemaHallId);
-    const filmScreening = new this.entities.FilmScreening(film, cinemaHall, time);
-    const errors = this.validate(filmScreening);
-
-    if (!errors) {
-      this.repositories.filmScreening.save(filmScreening);
-    }
-
-    return [filmScreening, errors];
   }
 }

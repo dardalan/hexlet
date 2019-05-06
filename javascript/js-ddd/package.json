@@ -4,6 +4,8 @@
     "bottlejs": "*",
     "lodash": "*",
     "uuid-js": "*",
+    "date-fns": "*",
+    "javascript-state-machine": "*",
     "validate.js": "*",
     "@babel/plugin-proposal-class-properties": "^7.4.0"
   },

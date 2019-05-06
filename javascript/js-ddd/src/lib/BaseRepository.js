@@ -25,6 +25,10 @@ export default class {
   }
 
   save(entity) {
+    const foundEntity = this.findBy(entity);
+    if (foundEntity) {
+      this.data = this.data.filter(e => e.id !== foundEntity.id);
+    }
     this.data.push(entity);
   }
 }
